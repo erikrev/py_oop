@@ -27,7 +27,7 @@ class Album:
         self.name = name
         self.year = year
         if artist is None:
-            self.artist = "Various Artists"
+            self.artist = Artist("Various Artists")
         else:
             self.artist = artist
         self.tracks = []
@@ -70,3 +70,19 @@ class Artist:
 
         """
         self.albums.append(album)
+
+
+def load_data():
+    new_artist = None
+    new_album = None
+    artist_list = []
+
+    with open("albums.txt", "r") as albums:
+        for line in albums:
+            artist_field, album_field, year_field, song_field = tuple(line.strip("\n").split("\t"))
+            year_field = int(year_field)
+            print(artist_field, album_field, year_field, song_field)
+
+
+if __name__ == "__main__":
+    load_data()
